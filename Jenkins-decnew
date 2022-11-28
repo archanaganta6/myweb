@@ -7,24 +7,23 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'gitclone', url: 'https://github.com/nice2pandu/myweb.git'
-            }
+git credentialsId: 'git clone', url: 'https://github.com/archanaganta6/myweb.git'            }
         }
         stage("Maven Build"){
             steps{
-                sh "mvn clean sonar:sonar package"
+                sh "mvn clean package"
                 sh "mv target/*.war target/myweb.war"
             }
         }
-        stage("deploy-dev"){
+        stage("deployment"){
             steps{
-                sshagent(['Deploy-dev']) {
+            sshagent(['deployment']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@172.31.14.114:/home/ec2-user/apache-tomcat-9.0.68/webapps/
+                    scp -o StrictHostKeyChecking=no target/myweb.war  ec2-user@10.0.0.21:/home/ec2-user/apache-tomcat-9.0.69/webapps/
                     
-                    ssh ec2-user@172.31.14.114 /home/ec2-user/apache-tomcat-9.0.68/bin/shutdown.sh
+                    ssh ec2-user@10.0.0.21 /home/ec2-user/apache-tomcat-9.0.69/bin/shutdown.sh
                     
-                    ssh ec2-user@172.31.14.114 /home/ec2-user/apache-tomcat-9.0.68/bin/startup.sh
+                    ssh ec2-user@10.0.0.21 /home/ec2-user/apache-tomcat-9.0.69/bin/startup.sh
                 
                 """
             }
