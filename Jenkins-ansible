@@ -21,21 +21,23 @@ pipeline{
         }
         stage('Upload War To Nexus'){
             steps{
-                  nexusArtifactUploader artifacts: [
-                       [
-                            artifactId: 'myweb', 
-                            classifier: '', 
-                            file: "target/myweb-8.2.0.war", 
-                            type: 'war'
-                       ]
-                  ], 
-                  credentialsId: 'nexus3', 
-                  groupId: 'in.javahome', 
-                  nexusUrl: '172.31.46.170:8081', 
-                  nexusVersion: 'nexus3', 
-                  protocol: 'http', 
-                  repository: 'sample-releases', 
-                  version: '8.2.0'  
+                  nexusArtifactUploader artifacts:
+[
+[
+artifactId: 'myweb',
+ classifier: '', 
+file: 'target/myweb-8.2.0-SNAPSHOT.war',
+ type: 'war'
+]
+],
+ credentialsId: '0b756675-f4c7-4861-a82f-81dad74f936b', 
+groupId: 'in.javahome',
+ nexusUrl: '54.200.178.113:8081', 
+nexusVersion: 'nexus3',
+ protocol: 'http', 
+repository: 'sample-snapshot', 
+version: '8.2.0-SNAPSHOT'
+               
               }
             }
         stage("Execute Ansible"){
@@ -45,4 +47,8 @@ pipeline{
            
         }
     }
-}
+                          
+          
+
+            
+
