@@ -42,7 +42,7 @@ version: '8.2.0-SNAPSHOT'
             }
         stage("Execute Ansible"){
             steps{
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.in', playbook: 'copy.yml'
+               ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.in', playbook: 'copy.yml'
             }
            
         }
