@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-               git credentialsId: 'javahome2', url: 'https://github.com/archanaganta6/myweb.git' 
+              git credentialsId: 'javahome2', url: 'https://github.com/archanaganta6/myweb.git'
             }
         }
         stage("Maven Build"){
@@ -19,22 +19,21 @@ pipeline{
         stage('Upload War To Nexus'){
             steps{
                   nexusArtifactUploader artifacts:
-[
-[
-artifactId: 'myweb',
- classifier: '', 
-file: 'target/myweb-8.2.0-SNAPSHOT.war',
- type: 'war'
-]
-],
- credentialsId: '0b756675-f4c7-4861-a82f-81dad74f936b', 
-groupId: 'in.javahome',
- nexusUrl: '54.200.178.113:8081', 
-nexusVersion: 'nexus3',
- protocol: 'http', 
-repository: 'sample-snapshot', 
-version: '8.2.0-SNAPSHOT'
-               
+                                 [
+                                  [
+                                   artifactId: 'myweb', 
+                                        classifier: '',
+                 file: 'target/myweb-8.3.3-SNAPSHOT.war', type: 'war'
+                                ]
+                                ], 
+                credentialsId: '1e355562-a669-4223-8bc8-f37419f117dc',
+                         groupId: 'in.javahome',
+                        nexusUrl: '10.0.0.228:8081',
+                        nexusVersion: 'nexus3', 
+                        protocol: 'http',
+                         repository: 'sample-snapshot',
+                         version: '8.3.3-SNAPSHOT'
+
               }
             }
         stage("Execute Ansible"){
