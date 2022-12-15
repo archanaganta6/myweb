@@ -28,7 +28,7 @@ pipeline{
                  file: 'target/myweb-8.3.3-SNAPSHOT.war', type: 'war'
                                 ]
                                 ], 
-                credentialsId: '1e355562-a669-4223-8bc8-f37419f117dc',
+                credentialsId: '1e355562-a669-4223-8bc8-f37419f117dc,
                          groupId: 'in.javahome',
                         nexusUrl: '10.0.0.228:8081',
                         nexusVersion: 'nexus3', 
