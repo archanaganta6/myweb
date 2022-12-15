@@ -3,5 +3,5 @@
    tasks:
      - name: copy the file from local to remote
        copy:
-         src: target/myweb-8.2.0-SNAPSHOT.war
+         src: target/myweb-8.3.3-SNAPSHOT.war
          dest: /usr/local/apache-tomcat-9.0.70/webapps/
